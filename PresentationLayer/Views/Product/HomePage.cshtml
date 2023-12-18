@@ -1,0 +1,41 @@
+﻿@using PresentationLayer.ViewModels
+@model HomePageVM
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="container">
+    <div style="margin-bottom:20px;">
+        <a asp-action="CreateProduct" class="btn btn-warning">Create New Product</a>
+    </div>
+
+    <div class="row">
+        @if (Model.Products != null){
+            @foreach (var product in Model.Products)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="card-text">@product.Description</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a asp-action="ProductPage" asp-route-productId="@product.ProductId" class="btn btn-sm btn-outline-secondary">View</a>
+                                    <a asp-action="EditProduct" asp-route-productId="@product.ProductId" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                    <a asp-action="DeleteProduct" asp-route-productId="@product.ProductId" class="btn btn-sm btn-outline-danger">Delete</a>
+                                </div>
+                                <small class="text-muted">$@product.Price</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <h1>Ther are no products yet</h1>
+        }
+    </div>
+</div>

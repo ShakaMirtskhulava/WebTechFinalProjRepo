@@ -1,0 +1,37 @@
+﻿@using PresentationLayer.ViewModels
+@model MyProductVM
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+    <form asp-action="EditProduct" method="post">
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price" class="control-label"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Update" asp-route-ProductId="@Model.ProductId" class="btn btn-primary" />
+        </div>
+    </form>
+    <div class="mt-3">
+        <a asp-action="HomePage" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
